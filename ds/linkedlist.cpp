@@ -308,6 +308,7 @@ void getCount(){
     cout<<"count is :"<<count;
 }
 
+
 int main(){
     int choice;
     
@@ -353,6 +354,8 @@ int main(){
                 break;
         case 12:cout<<"Delete Node K"<<endl;
                 delete_node();
+                break;
+        case 13:cout<<"check"<<endl;
                 break;
         default:cout<<"Enter valid option"<<endl;
         }
