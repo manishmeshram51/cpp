@@ -44,7 +44,7 @@ struct Node
     }
 };
 
-Node *newNode(string str)
+Node * newNode(string str)
 {
     Node *new_node = new Node(str);
     new_node->next = NULL;
