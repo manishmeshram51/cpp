@@ -69,22 +69,19 @@ struct Node
 };
 */
 
-// Deletes middle of linked list and returns head of the modified list
-// Node* deleteMid(Node* head) {
-//     // Your Code Here
-//     Node *ptr = head;
-//     Node * fast_ptr = head;
-//     Node * slow_ptr = head;
-//     // here we wanted 1 2 3 4 5 6 mai se 4 as a mid
-//     while(fast_ptr != NULL && fast_ptr->next != NULL){
-//         ptr = slow_ptr;
-//         slow_ptr = slow_ptr->next;
-//         fast_ptr = fast_ptr->next->next;
-//     }
-//     // middle data
-//     // cout<<slow_ptr->data;
-
-//     ptr->next = slow_ptr->next;
+Node* deleteMid(Node* head) {
+    // Your Code Here
+    Node *ptr = head;
+    Node * fast_ptr = head;
+    Node * slow_ptr = head;
+    while(fast_ptr != NULL && fast_ptr->next != NULL){
+        ptr = slow_ptr;
+        slow_ptr = slow_ptr->next;
+        fast_ptr = fast_ptr->next->next;
+    }
+    // middle data
+    ptr->next = slow_ptr->next;
+    // cout<<slow_ptr->data;
     
-//     return head;
-// }
+    return head;
+}

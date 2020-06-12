@@ -1,102 +1,101 @@
 // { Driver Code Starts
 //Initial Template for C++
 
-// #include<bits/stdc++.h>
+// C program to find n'th Node in linked list
+#include <stdio.h>
+#include <stdlib.h>
 #include<iostream>
 using namespace std;
-struct node
-{
+
+/* Link list Node */
+struct Node {
   int data;
-  struct node*next,*prev;
-  
-  node(int x){
-      data = x;
-      next = NULL;
-      prev = NULL;
+  struct Node *next;
+  Node(int x) {
+    data = x;
+    next = NULL;
   }
-  
 };
-struct node* update(struct node*start,int p);
+
+
+/* Function to get the middle of the linked list*/
+struct Node *reverseList(struct Node *head);
+
+void printList(struct Node *head)
+{
+    struct Node *temp = head;
+    while (temp != NULL)
+    {
+       printf("%d ", temp->data);
+       temp  = temp->next;
+    }
+}
+
+/* Driver program to test above function*/
 int main()
 {
-    int t;
-    cin>>t;
-    while(t--)
+    int T,n,l,firstdata;
+    cin>>T;
+
+    while(T--)
     {
-        int n,p;
-        cin>>n>>p;
-        struct node*start = NULL;
-        struct node* cur = NULL;
-        struct node* ptr = NULL;
-        
-        for(int i=0;i<n;i++)
+        struct Node *head = NULL,  *tail = NULL;
+
+        cin>>n;
+        cin>>firstdata;
+        head = new Node(firstdata);
+        tail = head;
+        for (int i=1; i<n; i++)
         {
-            int a;
-            cin>>a;
-            ptr=new node(a);
-            ptr->data=a;
-            ptr->next=NULL;
-            ptr->prev=NULL;
-            if(start==NULL)
-            {
-                start=ptr;
-                cur=ptr;
-            }
-            else
-            {
-                cur->next=ptr;
-                ptr->prev=cur;
-                cur=ptr;
-            }
+            cin>>l;
+            tail->next = new Node(l);
+            tail = tail->next;
         }
-        struct node*str=update(start,p);
-        while(str!=NULL)
-        {
-            cout<<str->data<<" ";
-            str=str->next;
-        }
-        cout<<endl;  
+       head = reverseList(head);
+
+       printList(head);
+
+       cout << endl;
     }
+    return 0;
 }
 
-struct node*update(struct node* start,int p)
+// } Driver Code Ends
+
+
+/*
+struct Node {
+  int data;
+  struct Node *next;
+  Node(int x) {
+    data = x;
+    next = NULL;
+  }
+};
+*/
+// Should reverse list and return new head.
+Node* reverseList(Node *head)
 {
-    //Add your code here
-    int count =0;
-    node * head;
-    node* ptr = start;
-    node* startBack = start;
+    // Your code here
+    Node * p1, * p2, *p3, *temp;
     
-    while(ptr->next!=NULL){
-        if(count==p){
-            cout<<" | ";
-            start = ptr;
-            head = ptr;
-        }
-        count ++;
-        cout<<ptr->data<<" ";
+    if(head->next==NULL){
+        return head;
+    }
+    else{
+        p1 = head;
+        p2 = p1->next;
+        p3 = p2->next;
         
-        ptr = ptr-> next;
-        head -> next = new node(ptr->data);
+        p1->next = NULL;
+        while(p3!=NULL){
+            p2->next = p1;
+            p1 = p2;
+            p2 = p3;
+            p3 = p3->next;
+        }
+        p2->next = p1;
+        return p2;
     }
-    
-    if(ptr->next==NULL){
-        cout<<ptr->data<<" ";
-        ptr->next = startBack;
-    }
-    cout<<endl;
-
-    for(int i=0 ; i<p; i++){
-        cout<<startBack->data<<" ";
-        startBack = startBack->next;
-    }
-    startBack->next = NULL;
-    
-    cout<<endl;
-    ptr = start;
-    while(ptr!=NULL){
-        cout<<ptr->data;
-        ptr = ptr->next;
-    }
-    return start;
 }
+
