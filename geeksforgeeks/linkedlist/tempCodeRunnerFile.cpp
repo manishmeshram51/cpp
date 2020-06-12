@@ -1,2 +1,2 @@
-
-      data = x;
+slow->next = newnode;
+    newnode ->next = ptr;
